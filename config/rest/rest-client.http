@@ -1,0 +1,75 @@
+### Config-Server
+http://{{config-host}}/bestellung/dev
+Authorization: {{basic-auth}}
+
+### Suche alle Bestellungen
+http://{{host}}
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit vorhandener Bestellung-ID
+http://{{host}}/10000000-0000-0000-0000-000000000001
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit ungueltiger Bestellung-ID
+http://{{host}}/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit nicht-vorhandener Bestellung-ID
+http://{{host}}/99999999-9999-9999-9999-999999999999
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit vorhandener Bestellung-ID und If-None-Match
+http://{{host}}/10000000-0000-0000-0000-000000000001
+If-None-Match: 0
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit vorhandener Kunde-ID
+http://{{host}}/?kundeId=00000000-0000-0000-0000-000000000001
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Eine neue Bestellung anlegen
+POST http://{{host}}
+Content-Type: application/json
+Authorization: {{basic-auth}}
+ALPN: h2
+
+< bestellung-neu.json
+
+# -----------------------------------------------------------------
+# A c t u a t o r
+# -----------------------------------------------------------------
+
+### Uebersicht
+http://{{actuator}}
+Authorization: {{basic-auth}}
+
+### Status (erforder Client fuer MongoDB)
+#http://{{actuator}}/status
+#Authorization: {{basic-auth}}
+
+### Status
+http://{{actuator}}/status
+Authorization: {{basic-auth}}
+
+### Spring Beans
+http://{{actuator}}/beans
+Authorization: {{basic-auth}}
+
+### Configuration Properties
+http://{{actuator}}/configprops
+Authorization: {{basic-auth}}
+
+### Umgebung und Properties
+http://{{actuator}}/env
+Authorization: {{basic-auth}}
+
+### Shutdown
+POST http://{{actuator}}/shutdown
+Authorization: {{basic-auth}}
+Content-Type: application/json
